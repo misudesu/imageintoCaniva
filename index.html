@@ -1,0 +1,75 @@
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <script src="html2canvas.min.js"></script>
+    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"> </script>
+
+  </head>
+  <body>
+    <div id="capture" style="padding: 10px; ">
+        <div class="profile-card">
+            <div class="top-section">
+              <!-- <i class="message fas fa-envelope"></i>
+              <i class="notif fas fa-bell"></i> -->
+              <div class="pic">
+                <img id="blah" src="#" alt="">
+              </div>
+              <div class="name">i am </div>
+              <div class="tag">DIGITAL MISSIONARY</div>
+            </div>
+       
+            <div class="bottom-section">
+              <div class="social-media">             
+              </div>
+              <div class="videos">60+ <span>Posts</span></div>
+              <div class="border"></div>
+              <div class="subscribers">200+ <span>Web Subscribers</span></div>
+              <div class="border"></div>
+              <div class="views">500k <span>Views</span></div>
+            </div>
+          </div>
+    </div>
+<div>
+    <input type="file" name="name" onchange="readURL(this);"/>
+    <button onclick="shot();">Create Image</button>
+</div>
+   <script>
+    function event(){
+        html2canvas(document.querySelector("#capture")).then(canvas => {
+        document.body.appendChild(canvas)
+    });
+    }
+   </script>
+   <script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        
+        }
+    }
+   function shot(){
+    var elmt=document.getElementById('capture');
+    domtoimage.toPng(elmt)
+    .then(function(dataUrl){
+        var img=new Image();
+        img.src=dataUrl;
+        document.body.appendChild(img);
+    })
+    .catch(function(error){
+        console.error('error found',error);
+    })
+   }
+</script>
+  </body>
+</html>
